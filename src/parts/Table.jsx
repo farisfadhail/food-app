@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, Component } from "react";
 import CartDetail from "../components/CartDetail";
+import DetailFood from "../components/DetailFood";
 
 import { Data } from "./DataDummy";
 
@@ -29,15 +30,26 @@ export default function Table() {
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>{dataCart}</tbody>
+					<tbody>
+						{dataCart}
+						{Data.map((item, index) => {
+							return <DetailFood name={item.name} price={item.price} rating={item.rating} thumbnail={item.thumbnail} category={item.category} />;
+						})}
+					</tbody>
+					{/* START: Bottom */}
+					<th></th>
+					<th></th>
+					<th className="text-right">Total :</th>
+					<th>{total}</th>
+					<th></th>
+					<th className="text-right">
+						<button type="submit" className="btn btn-accent w-36 text-base text-white">
+							Checkout
+						</button>
+					</th>
+					{/* END: Bottom */}
 				</table>
 			</div>
-			<footer className="px-10 py-8 bg-base-200 flex w-full justify-items-end">
-				<div className="text-base">{total}</div>
-				<button type="submit" className="btn btn-accent text-base text-white">
-					Checkout
-				</button>
-			</footer>
 		</>
 	);
 }

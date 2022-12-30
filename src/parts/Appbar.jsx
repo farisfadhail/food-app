@@ -39,9 +39,9 @@ export default function Appbar() {
 							</li>
 						</ul>
 					</div>
-					<a className="ml-8">
+					<Link to="/" className="ml-8">
 						<img src={Logo} className="w-10" />
-					</a>
+					</Link>
 				</div>
 				<div className="navbar-center hidden lg:flex">
 					<ul className="menu menu-horizontal px-1 gap-x-2">

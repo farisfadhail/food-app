@@ -9,6 +9,7 @@ const Data = [
 		price: "20000",
 		thumbnail: Soto,
 		rating: 4.0,
+		featured: 1,
 	},
 	{
 		id: 2,
@@ -17,6 +18,7 @@ const Data = [
 		price: "50000",
 		thumbnail: Burrito,
 		rating: 4.8,
+		featured: 0,
 	},
 ];
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../components/TextInput";
 import PropType from "prop-types";
 import { NumericFormat } from "react-number-format";
+import DetailFood from "./DetailFood";
 
 CartDetail.propType = {
 	name: PropType.string.isRequired,
@@ -51,15 +52,17 @@ export default function CartDetail({ name, price, category, thumbnail }) {
 							-
 						</button>
 						<Input className="md:max-w-[72px] relative px-4 numHide input-bordered input-primary text-center" type="number" value={count} />
-						<button className="btn btn-sm text-lg" onClick={incrementCount}>
+						<button className="btn btn-sm text-md" onClick={incrementCount}>
 							+
 						</button>
 					</div>
 				</td>
-				<th>
-					<button className="btn btn-primary btn-sm mr-2 ml-12">Detail</button>
+				<td>
+					<label className="btn btn-primary btn-sm mr-2 ml-12" htmlFor="my-modal-5">
+						Detail
+					</label>
 					<button className="btn btn-error text-white btn-sm mr-2">Delete</button>
-				</th>
+				</td>
 			</tr>
 		</>
 	);
