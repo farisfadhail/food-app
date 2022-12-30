@@ -30,10 +30,10 @@ export default function Appbar() {
 								</a>
 								<ul className="p-2 bg-white shadow-md">
 									<li>
-										<a>Profile</a>
+										<Link to="/profile">Profile</Link>
 									</li>
 									<li>
-										<a>Contact Us</a>
+										<Link to="/contact-us">Contact Us</Link>
 									</li>
 								</ul>
 							</li>
@@ -60,10 +60,10 @@ export default function Appbar() {
 							</a>
 							<ul className="p-2 bg-white shadow-md">
 								<li>
-									<a>Profile</a>
+									<Link to="/profile">Profile</Link>
 								</li>
 								<li>
-									<a>Contact Us</a>
+									<Link to="/contact-us">Contact Us</Link>
 								</li>
 							</ul>
 						</li>
@@ -94,15 +94,6 @@ export default function Appbar() {
 							</div>
 						</label>
 						<ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-							<li>
-								<a className="justify-between">
-									Profile
-									<span className="badge">New</span>
-								</a>
-							</li>
-							<li>
-								<a>Settings</a>
-							</li>
 							<li>
 								<a>Logout</a>
 							</li>

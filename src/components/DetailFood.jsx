@@ -6,7 +6,7 @@ export default function DetailFood({ name, price, thumbnail, category, rating = 
 			<input type="checkbox" id="my-modal-5" className="modal-toggle" />
 			<label htmlFor="my-modal-5" className="modal cursor-pointer">
 				<label className="modal-box relative" htmlFor="">
-					<div className="relative group overflow-hidden mr-1">
+					<div className="relative group overflow-hidden mx-1">
 						<img src={thumbnail} className="object-cover rounded-[30px]" alt="" />
 						<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black rounded-bl-[28px] rounded-br-[28px]">
 							<div className="px-7 pb-7">
