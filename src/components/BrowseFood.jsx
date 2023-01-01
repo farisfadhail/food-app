@@ -8,9 +8,9 @@ BrowseFood.propType = {
 	thumbnail: PropType.string.isRequired,
 };
 
-export default function BrowseFood({ name, price, category, thumbnail, rating = 0 }) {
+export default function BrowseFood({ name, price, category, thumbnail, rating = 0, handle }) {
 	return (
-		<div className="absolute group overflow-hidden mr-[30px]">
+		<div className="absolute group overflow-hidden mr-[30px]" onClick={handle}>
 			{/* The button to open modal */}
 			<label htmlFor="my-modal-4" className="cursor-pointer">
 				<img src={thumbnail} className="object-cover rounded-[30px] h-[340px] w-[250px]" alt="" />

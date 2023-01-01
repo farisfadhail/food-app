@@ -10,10 +10,10 @@ FeaturedFood.propType = {
 	rating: PropType.number,
 };
 
-export default function FeaturedFood({ name, category, price, thumbnail, rating = 0 }) {
+export default function FeaturedFood({ name, category, price, thumbnail, rating = 0, handle }) {
 	return (
 		<>
-			<div className="absolute overflow-hidden group mr-[30px]">
+			<div className="absolute overflow-hidden group mr-[30px]" onClick={handle}>
 				{/* The button to open modal */}
 				<label htmlFor="my-modal-4" className="cursor-pointer">
 					<img src={thumbnail} className="object-cover rounded-[30px] w-[520px] h-[340px]" alt="" />

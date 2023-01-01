@@ -1,15 +1,28 @@
-import React, { useContext, Component } from "react";
+import React, { useContext, useState } from "react";
 import CartDetail from "../components/CartDetail";
 import DetailFood from "../components/DetailFood";
+import { CartContext } from "../context/Product";
+import { NumericFormat } from "react-number-format";
 
 import { Data } from "./DataDummy";
 
 export default function Table() {
-	const dataCart = Data.map((item, index) => {
-		return <CartDetail name={item.name} price={item.price} category={item.category} thumbnail={item.thumbnail} key={index} />;
+	const { id, qty, delCart } = useContext(CartContext);
+	const pick = Data.at(id - 1);
+	const [total, setTotal] = useState({
+		total: 0,
 	});
 
-	const total = useContext(dataCart);
+	function handleChange(e) {
+		if (e.target.checked) {
+			setTotal({
+				...total,
+				total: pick.price * qty,
+			});
+		} else {
+			setTotal({ total: 0 });
+		}
+	}
 
 	return (
 		<>
@@ -31,19 +44,26 @@ export default function Table() {
 						</tr>
 					</thead>
 					<tbody>
-						{dataCart}
-						{Data.map((item, index) => {
-							return <DetailFood name={item.name} price={item.price} rating={item.rating} thumbnail={item.thumbnail} category={item.category} />;
-						})}
+						{id === 0 ? (
+							<div className="font-bold my-8 text-end">No item in cart.</div>
+						) : (
+							<>
+								<CartDetail handleChange={handleChange} name={pick.name} price={pick.price} category={pick.category} thumbnail={pick.thumbnail} key={pick.id} />
+								<DetailFood name={pick.name} price={pick.price} category={pick.category} thumbnail={pick.thumbnail} rating={pick.rating} />
+							</>
+						)}
 					</tbody>
+
 					{/* START: Bottom */}
 					<th></th>
 					<th></th>
 					<th className="text-right">Total :</th>
-					<th>{total}</th>
+					<th>
+						<NumericFormat value={total.total} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
+					</th>
 					<th></th>
 					<th className="text-right">
-						<button type="submit" className="btn btn-accent w-36 text-base text-white">
+						<button type="submit" className="btn btn-accent w-36 text-base text-white" onClick={delCart}>
 							Checkout
 						</button>
 					</th>

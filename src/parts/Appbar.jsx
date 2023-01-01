@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/LogoPemro.png";
 import Foto from "../assets/sana.png";
+import { CartContext } from "../context/Product";
 import { Data } from "./DataDummy";
 
 export default function Appbar() {
+	// const id = useContext(CartContext);
+
 	return (
 		<>
 			<div className="navbar bg-base-100 py-4 rounded-b-lg shadow-md">

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../components/TextInput";
 import PropType from "prop-types";
 import { NumericFormat } from "react-number-format";
-import DetailFood from "./DetailFood";
+import { CartContext } from "../context/Product";
+import { Data } from "../parts/DataDummy";
 
 CartDetail.propType = {
 	name: PropType.string.isRequired,
@@ -11,15 +12,16 @@ CartDetail.propType = {
 	thumbnail: PropType.string.isRequired,
 };
 
-export default function CartDetail({ name, price, category, thumbnail }) {
-	const [count, setCount] = useState(1);
+export default function CartDetail({ name, price, category, thumbnail, handleChange }) {
+	const { delCart, updateQty, qty, id } = useContext(CartContext);
+	const pick = Data.at(id - 1);
 
 	const decrementCount = () => {
-		if (count > 1) setCount(count - 1);
+		if (qty > 1) updateQty(qty - 1);
 	};
 
 	const incrementCount = () => {
-		setCount(count + 1);
+		updateQty(qty + 1);
 	};
 
 	return (
@@ -27,7 +29,7 @@ export default function CartDetail({ name, price, category, thumbnail }) {
 			<tr>
 				<th>
 					<label>
-						<input type="checkbox" className="checkbox" />
+						<input type="checkbox" className="checkbox" onChange={handleChange} />
 					</label>
 				</th>
 				<td>
@@ -44,14 +46,14 @@ export default function CartDetail({ name, price, category, thumbnail }) {
 				</td>
 				<td>{category}</td>
 				<td>
-					<NumericFormat value={price * count} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
+					<NumericFormat value={price * qty} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
 				</td>
 				<td>
 					<div className="flex items-center gap-x-2">
 						<button className="btn btn-sm text-xl pb-4" onClick={decrementCount}>
 							-
 						</button>
-						<Input className="md:max-w-[72px] relative px-4 numHide input-bordered input-primary text-center" type="number" value={count} />
+						<Input className="md:max-w-[72px] relative px-4 numHide input-bordered input-primary text-center" type="number" value={qty} />
 						<button className="btn btn-sm text-md" onClick={incrementCount}>
 							+
 						</button>
@@ -61,7 +63,9 @@ export default function CartDetail({ name, price, category, thumbnail }) {
 					<label className="btn btn-primary btn-sm mr-2 ml-12" htmlFor="my-modal-5">
 						Detail
 					</label>
-					<button className="btn btn-error text-white btn-sm mr-2">Delete</button>
+					<button className="btn btn-error text-white btn-sm mr-2" onClick={delCart}>
+						Delete
+					</button>
 				</td>
 			</tr>
 		</>

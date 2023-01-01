@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Input from "./TextInput";
 import { NumericFormat } from "react-number-format";
+import { CartContext } from "../context/Product";
 
-export default function Modal({ name, price, category }) {
+export default function Modal({ id, name, price, category }) {
+	const { addCart, qty } = useContext(CartContext);
 	const [count, setCount] = useState(1);
 
 	const decrementCount = () => {
@@ -13,9 +15,19 @@ export default function Modal({ name, price, category }) {
 		setCount(count + 1);
 	};
 
+	const reset = () => {
+		setCount(1);
+	};
+
+	const addToCartHandler = () => {
+		addCart(id, count);
+	};
+
+	console.log(id, qty);
+
 	return (
 		<>
-			<input type="checkbox" id="my-modal-4" className="modal-toggle" />
+			<input type="checkbox" id="my-modal-4" className="modal-toggle" onClick={reset} />
 			<label htmlFor="my-modal-4" className="modal cursor-pointer">
 				<label className="modal-box relative" htmlFor="">
 					<h3 className="font-bold text-lg">Add {name} to Cart?</h3>
@@ -33,7 +45,7 @@ export default function Modal({ name, price, category }) {
 								+
 							</button>
 						</div>
-						<label htmlFor="my-modal-4" className="btn btn-primary text-white text-base">
+						<label htmlFor="my-modal-4" className="btn btn-primary text-white text-base" onClick={addToCartHandler}>
 							Add
 						</label>
 					</div>
