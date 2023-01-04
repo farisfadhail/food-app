@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import Input from "./TextInput";
 import { NumericFormat } from "react-number-format";
 import { CartContext } from "../context/Product";
+import { Data } from "../parts/DataDummy";
 
 export default function Modal({ id, name, price, category }) {
-	const { addCart, qty } = useContext(CartContext);
+	const { addToCart } = useContext(CartContext);
 	const [count, setCount] = useState(1);
+	const pick = Data.at(id);
 
 	const decrementCount = () => {
 		if (count > 1) setCount(count - 1);
@@ -20,10 +22,10 @@ export default function Modal({ id, name, price, category }) {
 	};
 
 	const addToCartHandler = () => {
-		addCart(id, count);
+		addToCart({ id }, count);
 	};
 
-	console.log(id, qty);
+	console.log(id, count);
 
 	return (
 		<>

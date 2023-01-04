@@ -1,28 +1,40 @@
 import { createContext, useState } from "react";
 
-const cartInitialValue = {
-	id: 0,
-	qty: 0,
-};
-
-const CartContext = createContext(cartInitialValue);
+const CartContext = createContext();
 
 const CartContextProvider = (props) => {
-	const [state, setState] = useState(cartInitialValue);
+	const [cart, setCart] = useState([]);
+	console.log(cart);
 
-	const addCart = (id, qty) => {
-		setState({ id: id, qty: qty });
+	const addToCart = (product, quantity) => {
+		// check if product with the same id already exists in the cart
+		const existingProduct = cart.find((p) => p.id === product.id);
+
+		if (existingProduct) {
+			// if it does, increase the quantity if it's a number
+			if (typeof existingProduct.quantity === "number") {
+				setCart(cart.map((p) => (p.id === product.id ? { ...p, quantity: p.quantity + quantity } : p)));
+			}
+		} else {
+			// if it doesn't, add the product to the cart with the specified quantity
+			setCart([...cart, { ...product, quantity }]);
+		}
 	};
 
 	const delCart = () => {
-		setState(cartInitialValue);
+		setCart();
 	};
 
 	const updateQty = (qty) => {
-		setState({ id: state.id, qty: qty });
+		setCart([...cart, qty]);
 	};
 
-	return <CartContext.Provider value={{ id: state.id, qty: state.qty, addCart, delCart, updateQty }}>{props.children}</CartContext.Provider>;
+	const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+	// const total = (totalPrice) => {
+	// 	setCart([...cart, totalPrice]);
+	// };
+
+	return <CartContext.Provider value={{ total, addToCart, delCart, updateQty, cart }}>{props.children}</CartContext.Provider>;
 };
 
 export { CartContext, CartContextProvider };

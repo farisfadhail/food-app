@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
 import Profile from "./pages/Profile";
+import Checkout from "./pages/Checkout";
 
 export default function App() {
 	return (
@@ -14,6 +15,7 @@ export default function App() {
 			<Route path="/cart" element={<Cart />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/contact-us" element={<ContactUs />} />
+			<Route path="/checkout" element={<Checkout />} />
 		</Routes>
 	);
 }

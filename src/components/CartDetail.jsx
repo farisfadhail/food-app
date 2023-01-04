@@ -13,15 +13,22 @@ CartDetail.propType = {
 };
 
 export default function CartDetail({ name, price, category, thumbnail, handleChange }) {
-	const { delCart, updateQty, qty, id } = useContext(CartContext);
-	const pick = Data.at(id - 1);
+	const { delCart, cart } = useContext(CartContext);
+	const [qty, setQty] = useState(1);
+
+	// calculate the total price of all products in the cart
+	const totalPrice = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
 	const decrementCount = () => {
-		if (qty > 1) updateQty(qty - 1);
+		if (qty > 1) {
+			setQty(qty - 1);
+		} else {
+			delCart();
+		}
 	};
 
 	const incrementCount = () => {
-		updateQty(qty + 1);
+		setQty(qty + 1);
 	};
 
 	return (

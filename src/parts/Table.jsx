@@ -5,24 +5,24 @@ import { CartContext } from "../context/Product";
 import { NumericFormat } from "react-number-format";
 
 import { Data } from "./DataDummy";
+import { Link } from "react-router-dom";
 
 export default function Table() {
-	const { id, qty, delCart } = useContext(CartContext);
-	const pick = Data.at(id - 1);
-	const [total, setTotal] = useState({
-		total: 0,
-	});
+	const { cart, delCart, total } = useContext(CartContext);
+	// const pick = Data.at(id - 1);
+	const [check, setCheck] = useState(false);
+	const data = Data.map((item) => item.id);
+	const pick = cart.map((product) => product.id);
 
 	function handleChange(e) {
 		if (e.target.checked) {
-			setTotal({
-				...total,
-				total: pick.price * qty,
-			});
+			total(parseInt(pick.price) * cart.quantity);
 		} else {
-			setTotal({ total: 0 });
+			total(0);
 		}
 	}
+
+	console.log(cart, check);
 
 	return (
 		<>
@@ -44,13 +44,16 @@ export default function Table() {
 						</tr>
 					</thead>
 					<tbody>
-						{id === 0 ? (
+						{cart.length === 0 ? (
 							<div className="font-bold my-8 text-end">No item in cart.</div>
 						) : (
-							<>
-								<CartDetail handleChange={handleChange} name={pick.name} price={pick.price} category={pick.category} thumbnail={pick.thumbnail} key={pick.id} />
-								<DetailFood name={pick.name} price={pick.price} category={pick.category} thumbnail={pick.thumbnail} rating={pick.rating} />
-							</>
+							Data.map((item) => {
+								if (pick in data)
+									<>
+										<CartDetail handleChange={handleChange} name={item.name} price={item.price} category={item.category} thumbnail={item.thumbnail} key={item.id} />
+										<DetailFood name={item.name} price={item.price} category={item.category} thumbnail={item.thumbnail} rating={item.rating} />
+									</>;
+							})
 						)}
 					</tbody>
 
@@ -59,13 +62,13 @@ export default function Table() {
 					<th></th>
 					<th className="text-right">Total :</th>
 					<th>
-						<NumericFormat value={total.total} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
+						<NumericFormat value={total} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
 					</th>
 					<th></th>
 					<th className="text-right">
-						<button type="submit" className="btn btn-accent w-36 text-base text-white" onClick={delCart}>
+						<Link to={check ? "/checkout" : ""} className="btn btn-accent w-36 text-base text-white" onClick={check ? delCart : ""}>
 							Checkout
-						</button>
+						</Link>
 					</th>
 					{/* END: Bottom */}
 				</table>
