@@ -66,7 +66,10 @@ export default function () {
 							</th>
 							<th></th>
 							<th className="text-right">
-								<Link to={cart.length === 0 ? "" : "/checkout"} className="btn btn-accent w-36 text-base text-white" onClick={deleteSelectedProducts}>
+								<button className="btn btn-error w-28 text-base text-white " onClick={deleteSelectedProducts}>
+									Delete
+								</button>
+								<Link to={cart.length === 0 ? "" : "/checkout"} className="btn btn-accent w-36 text-base text-white ml-4" onClick={deleteSelectedProducts}>
 									Checkout
 								</Link>
 							</th>

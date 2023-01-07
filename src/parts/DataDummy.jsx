@@ -1,6 +1,8 @@
 import Soto from "../assets/soto.jpg";
 import Burrito from "../assets/burrito.jpg";
 import NasiKebuli from "../assets/NasiKebuli.jpg";
+import Rendang from "../assets/rendang.jpg";
+import BokkeumBap from "../assets/bokkeum-bap.jpg";
 
 const Data = [
 	{
@@ -10,7 +12,7 @@ const Data = [
 		price: 20000,
 		thumbnail: Soto,
 		rating: 4,
-		featured: 1,
+		featured: 0,
 	},
 	{
 		id: 2,
@@ -28,6 +30,24 @@ const Data = [
 		price: 30000,
 		thumbnail: NasiKebuli,
 		rating: 5,
+		featured: 1,
+	},
+	{
+		id: 4,
+		name: "Rendang",
+		category: "Indonesian Food",
+		price: 15000,
+		thumbnail: Rendang,
+		rating: 5,
+		featured: 1,
+	},
+	{
+		id: 5,
+		name: "Bokkeum-bap",
+		category: "Korean Food",
+		price: 23000,
+		thumbnail: BokkeumBap,
+		rating: 4.5,
 		featured: 1,
 	},
 ];

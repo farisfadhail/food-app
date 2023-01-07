@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/LogoPemro.png";
 import Foto from "../assets/sana.png";
 import { CartContext } from "../context/Product";
-import { Data } from "./DataDummy";
 
 export default function Appbar() {
 	const { cart } = useContext(CartContext);

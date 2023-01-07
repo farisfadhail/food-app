@@ -29,7 +29,7 @@ export default function CartDetail({ id, qty, thumbnail, name, category, price, 
 		updateProduct({ id }, qty, price * qty);
 	};
 
-	console.log(cart);
+	// console.log(cart);
 
 	return (
 		<>

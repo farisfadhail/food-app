@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropType from "prop-types";
 import { NumericFormat } from "react-number-format";
 
@@ -14,7 +13,6 @@ export default function FeaturedFood({ name, category, price, thumbnail, rating 
 	return (
 		<>
 			<div className="absolute overflow-hidden group mr-[30px]" onClick={handle}>
-				{/* The button to open modal */}
 				<label htmlFor="my-modal-4" className="cursor-pointer">
 					<img src={thumbnail} className="object-cover rounded-[30px] w-[520px] h-[340px]" alt="" />
 					{/* rating */}

@@ -1,6 +1,5 @@
 import Appbar from "../parts/Appbar";
 import BrowseFood from "../components/BrowseFood";
-// import Footer from "../parts/Footer";
 import { useState } from "react";
 
 import { Data } from "../parts/DataDummy";

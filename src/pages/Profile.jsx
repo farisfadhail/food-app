@@ -11,9 +11,6 @@ export default function Profile() {
 				<div>
 					<img src={logoMixue} className=" min-w-full object-cover object-center" />
 				</div>
-				{/* <section>
-					<Footer />
-				</section> */}
 			</div>
 		</>
 	);

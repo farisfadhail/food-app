@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import Input from "./TextInput";
 import { NumericFormat } from "react-number-format";
 import { CartContext } from "../context/Product";
-import { Data } from "../parts/DataDummy";
 
 export default function Modal({ id, name, price, category }) {
 	const { addToCart } = useContext(CartContext);
@@ -24,7 +23,7 @@ export default function Modal({ id, name, price, category }) {
 		addToCart({ id }, count, price * count);
 	};
 
-	console.log(id, count);
+	// console.log(id, count);
 
 	return (
 		<>
