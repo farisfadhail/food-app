@@ -1,42 +1,42 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Input from "../components/TextInput";
 import PropType from "prop-types";
 import { NumericFormat } from "react-number-format";
 import { CartContext } from "../context/Product";
-import { Data } from "../parts/DataDummy";
 
 CartDetail.propType = {
 	name: PropType.string.isRequired,
 	category: PropType.string.isRequired,
 	price: PropType.number,
 	thumbnail: PropType.string.isRequired,
+	qty: PropType.number,
 };
 
-export default function CartDetail({ name, price, category, thumbnail, handleChange }) {
-	const { delCart, cart } = useContext(CartContext);
-	const [qty, setQty] = useState(1);
+export default function CartDetail({ id, qty, thumbnail, name, category, price, handleChange, isCheck, showHandle }) {
+	const { cart, updateProduct, deleteProduct } = useContext(CartContext);
 
-	// calculate the total price of all products in the cart
-	const totalPrice = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
-
-	const decrementCount = () => {
+	const DecrementCount = () => {
 		if (qty > 1) {
-			setQty(qty - 1);
+			qty -= 1;
+			updateProduct({ id }, qty, price * qty);
 		} else {
-			delCart();
+			deleteProduct(id);
 		}
 	};
 
 	const incrementCount = () => {
-		setQty(qty + 1);
+		qty += 1;
+		updateProduct({ id }, qty, price * qty);
 	};
+
+	console.log(cart);
 
 	return (
 		<>
 			<tr>
 				<th>
 					<label>
-						<input type="checkbox" className="checkbox" onChange={handleChange} />
+						<input type="checkbox" className="checkbox" onChange={handleChange} checked={isCheck} />
 					</label>
 				</th>
 				<td>
@@ -53,11 +53,11 @@ export default function CartDetail({ name, price, category, thumbnail, handleCha
 				</td>
 				<td>{category}</td>
 				<td>
-					<NumericFormat value={price * qty} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
+					<NumericFormat value={qty * price} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
 				</td>
 				<td>
 					<div className="flex items-center gap-x-2">
-						<button className="btn btn-sm text-xl pb-4" onClick={decrementCount}>
+						<button className="btn btn-sm text-xl pb-4" onClick={DecrementCount}>
 							-
 						</button>
 						<Input className="md:max-w-[72px] relative px-4 numHide input-bordered input-primary text-center" type="number" value={qty} />
@@ -67,10 +67,10 @@ export default function CartDetail({ name, price, category, thumbnail, handleCha
 					</div>
 				</td>
 				<td>
-					<label className="btn btn-primary btn-sm mr-2 ml-12" htmlFor="my-modal-5">
+					<label className="btn btn-primary btn-sm mr-2 ml-12" htmlFor="my-modal-5" onClick={showHandle}>
 						Detail
 					</label>
-					<button className="btn btn-error text-white btn-sm mr-2" onClick={delCart}>
+					<button className="btn btn-error text-white btn-sm mr-2" onClick={() => deleteProduct(id)}>
 						Delete
 					</button>
 				</td>

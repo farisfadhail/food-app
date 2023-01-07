@@ -4,37 +4,34 @@ const CartContext = createContext();
 
 const CartContextProvider = (props) => {
 	const [cart, setCart] = useState([]);
-	console.log(cart);
 
-	const addToCart = (product, quantity) => {
-		// check if product with the same id already exists in the cart
+	const addToCart = (product, quantity, price) => {
 		const existingProduct = cart.find((p) => p.id === product.id);
 
 		if (existingProduct) {
-			// if it does, increase the quantity if it's a number
 			if (typeof existingProduct.quantity === "number") {
-				setCart(cart.map((p) => (p.id === product.id ? { ...p, quantity: p.quantity + quantity } : p)));
+				setCart(cart.map((p) => (p.id === product.id ? { ...p, quantity: p.quantity + quantity, price: p.price + price } : p)));
 			}
 		} else {
-			// if it doesn't, add the product to the cart with the specified quantity
-			setCart([...cart, { ...product, quantity }]);
+			setCart([...cart, { ...product, quantity, price }]);
 		}
 	};
 
-	const delCart = () => {
-		setCart();
+	const deleteProduct = (id) => {
+		setCart(cart.filter((product) => product.id !== id));
 	};
 
-	const updateQty = (qty) => {
-		setCart([...cart, qty]);
+	const updateProduct = (product, newQuantity, newPrice) => {
+		const updatedProduct = { ...product, quantity: newQuantity, price: newPrice, selected: false };
+		setCart(cart.map((p) => (p.id === product.id ? updatedProduct : p)));
 	};
 
-	const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
-	// const total = (totalPrice) => {
-	// 	setCart([...cart, totalPrice]);
-	// };
+	const deleteSelectedProducts = () => {
+		const updatedCart = cart.filter((product) => !product.selected);
+		setCart(updatedCart);
+	};
 
-	return <CartContext.Provider value={{ total, addToCart, delCart, updateQty, cart }}>{props.children}</CartContext.Provider>;
+	return <CartContext.Provider value={{ deleteSelectedProducts, deleteProduct, addToCart, updateProduct, cart, setCart }}>{props.children}</CartContext.Provider>;
 };
 
 export { CartContext, CartContextProvider };

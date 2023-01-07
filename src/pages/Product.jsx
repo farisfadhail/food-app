@@ -39,7 +39,7 @@ export default function Order() {
 						<div className="font-semibold text-[22px] text-black mb-4">Featured Food</div>
 						<Flickity className="gap-[30px]" options={flickityOptions}>
 							{Data.map((item) => {
-								if (item.featured == 1) {
+								if (item.featured === 1) {
 									return (
 										<FeaturedFood
 											name={item.name}
@@ -58,7 +58,7 @@ export default function Order() {
 						</Flickity>
 					</div>
 					{/* Browse */}
-					<div className="mt-8">
+					<div className="my-8">
 						<div className="font-semibold text-[22px] text-black mb-4">Browse Food</div>
 						<Flickity className="gap-[30px]" options={flickityOptions}>
 							{Data.map((item) => (

@@ -2,77 +2,58 @@ import React, { useContext, useState } from "react";
 import CartDetail from "../components/CartDetail";
 import DetailFood from "../components/DetailFood";
 import { CartContext } from "../context/Product";
-import { NumericFormat } from "react-number-format";
 
 import { Data } from "./DataDummy";
-import { Link } from "react-router-dom";
 
 export default function Table() {
-	const { cart, delCart, total } = useContext(CartContext);
-	// const pick = Data.at(id - 1);
-	const [check, setCheck] = useState(false);
-	const data = Data.map((item) => item.id);
-	const pick = cart.map((product) => product.id);
+	const { cart, setCart } = useContext(CartContext);
+	const [detail, setDetail] = useState({
+		name: "",
+		price: 0,
+		category: "",
+		thumbnail: "",
+		rating: 0,
+	});
 
-	function handleChange(e) {
-		if (e.target.checked) {
-			total(parseInt(pick.price) * cart.quantity);
-		} else {
-			total(0);
-		}
-	}
+	const handleSelect = (id) => {
+		const updatedCart = cart.map((product) => {
+			if (product.id === id) {
+				return { ...product, selected: !product.selected };
+			}
+			return product;
+		});
+		setCart(updatedCart);
+	};
 
-	console.log(cart, check);
+	console.log(cart);
 
 	return (
 		<>
-			<div className="overflow-x-auto w-full">
-				<table className="table w-full">
-					{/* head */}
-					<thead>
-						<tr>
-							<th>
-								<label>
-									<input type="checkbox" className="checkbox" />
-								</label>
-							</th>
-							<th>Name</th>
-							<th>Category</th>
-							<th>Price</th>
-							<th>Quantity</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						{cart.length === 0 ? (
-							<div className="font-bold my-8 text-end">No item in cart.</div>
-						) : (
-							Data.map((item) => {
-								if (pick in data)
-									<>
-										<CartDetail handleChange={handleChange} name={item.name} price={item.price} category={item.category} thumbnail={item.thumbnail} key={item.id} />
-										<DetailFood name={item.name} price={item.price} category={item.category} thumbnail={item.thumbnail} rating={item.rating} />
-									</>;
-							})
-						)}
-					</tbody>
-
-					{/* START: Bottom */}
-					<th></th>
-					<th></th>
-					<th className="text-right">Total :</th>
-					<th>
-						<NumericFormat value={total} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
-					</th>
-					<th></th>
-					<th className="text-right">
-						<Link to={check ? "/checkout" : ""} className="btn btn-accent w-36 text-base text-white" onClick={check ? delCart : ""}>
-							Checkout
-						</Link>
-					</th>
-					{/* END: Bottom */}
-				</table>
-			</div>
+			{cart.map((i) =>
+				Data.map((item) =>
+					i.id === item.id ? (
+						<>
+							<CartDetail
+								key={item.id}
+								thumbnail={item.thumbnail}
+								name={item.name}
+								category={item.category}
+								price={item.price}
+								id={i.id}
+								qty={i.quantity}
+								handleChange={() => handleSelect(i.id, item.price)}
+								isCheck={i.selected}
+								showHandle={(e) => {
+									setDetail({ name: item.name, price: item.price, category: item.category, thumbnail: item.thumbnail, rating: item.rating });
+								}}
+							/>
+						</>
+					) : (
+						""
+					)
+				)
+			)}
+			<DetailFood name={detail.name} price={detail.price} category={detail.category} thumbnail={detail.thumbnail} rating={detail.rating} />
 		</>
 	);
 }

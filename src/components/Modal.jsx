@@ -7,7 +7,6 @@ import { Data } from "../parts/DataDummy";
 export default function Modal({ id, name, price, category }) {
 	const { addToCart } = useContext(CartContext);
 	const [count, setCount] = useState(1);
-	const pick = Data.at(id);
 
 	const decrementCount = () => {
 		if (count > 1) setCount(count - 1);
@@ -22,7 +21,7 @@ export default function Modal({ id, name, price, category }) {
 	};
 
 	const addToCartHandler = () => {
-		addToCart({ id }, count);
+		addToCart({ id }, count, price * count);
 	};
 
 	console.log(id, count);
