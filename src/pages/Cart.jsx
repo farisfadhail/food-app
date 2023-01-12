@@ -1,13 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/Product";
-import { NumericFormat } from "react-number-format";
 
 import { Link } from "react-router-dom";
 
-import Appbar from "../parts/Appbar";
-import Table from "../parts/Table";
+import Appbar from "../components/Appbar";
+import Table from "../components/Table";
 
-export default function () {
+export default function Cart () {
 	const { cart, setCart, deleteSelectedProducts } = useContext(CartContext);
 
 	useEffect(() => {
@@ -22,21 +21,15 @@ export default function () {
 		setCart(updatedCart);
 	};
 
-	const totalPrice = cart.reduce((acc, product) => {
-		if (product.selected) {
-			return acc + product.price;
-		}
-		return acc;
+	let totalPrice = cart.reduce((previous, current) => {
+		return previous + current.price;
 	}, 0);
-
-	console.log(cart);
+	totalPrice = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(totalPrice)
 
 	return (
 		<>
 			<div className="flex flex-col h-screen justify-between bg-base-200">
-				<div className="sticky top-0 z-50">
-					<Appbar />
-				</div>
+				<Appbar />
 				<div className="mb-auto mx-8 mt-8">
 					<div className="overflow-x-auto w-full">
 						<table className="table w-full">
@@ -58,13 +51,8 @@ export default function () {
 							<tbody>{cart.length === 0 ? <div className="font-bold my-8 text-end">No item in cart.</div> : <Table />}</tbody>
 
 							{/* START: Bottom */}
-							<th></th>
-							<th></th>
-							<th className="text-right">Total :</th>
-							<th>
-								<NumericFormat value={totalPrice} displayType={"text"} thousandSeparator={true} prefix={"Rp. "} />
-							</th>
-							<th></th>
+							<th colSpan={3} className="text-right">Total :</th>
+							<th colSpan={2}>{totalPrice}</th>
 							<th className="text-right">
 								<button className="btn btn-error w-28 text-base text-white " onClick={deleteSelectedProducts}>
 									Delete

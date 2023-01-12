@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 
 export default function Home() {
 	return (
 		<>
 			<div className="flex flex-col h-screen justify-between bg-base-200">
-				<div className="sticky top-0 z-50">
-					<Appbar />
-				</div>
+				<Appbar />
 				<div className="hero min-h-screen bg-base-200 absolute">
 					<div className="hero-content text-center">
 						<div className="max-w-md">

@@ -1,13 +1,15 @@
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 import BrowseFood from "../components/BrowseFood";
 import { useState } from "react";
 
-import { Data } from "../parts/DataDummy";
+import { getProducts } from "../utils/local-data";
 import Modal from "../components/Modal";
 import FeaturedFood from "../components/FeaturedFood";
 import Flickity from "react-flickity-component";
 
 export default function Order() {
+	const [products] = useState(() => getProducts()) 
+
 	const flickityOptions = {
 		cellAlign: "left",
 		contain: true,
@@ -25,19 +27,17 @@ export default function Order() {
 		category: "",
 	});
 
-	// console.log(modal);
+
 
 	return (
 		<>
 			<div className="flex flex-col h-screen justify-between">
-				<div className="sticky top-0 z-50">
-					<Appbar />
-				</div>
+				<Appbar />
 				<div className="mb-auto mx-8 my-8">
 					<div>
 						<div className="font-semibold text-[22px] text-black mb-4">Featured Food</div>
 						<Flickity className="gap-[30px]" options={flickityOptions}>
-							{Data.map((item) => {
+							{products.map((item) => {
 								if (item.featured === 1) {
 									return (
 										<FeaturedFood
@@ -53,6 +53,7 @@ export default function Order() {
 										/>
 									);
 								}
+								return null // always return something if use map in react
 							})}
 						</Flickity>
 					</div>
@@ -60,7 +61,7 @@ export default function Order() {
 					<div className="my-8">
 						<div className="font-semibold text-[22px] text-black mb-4">Browse Food</div>
 						<Flickity className="gap-[30px]" options={flickityOptions}>
-							{Data.map((item) => (
+							{products.map((item) => (
 								<BrowseFood
 									key={item.id}
 									price={item.price}

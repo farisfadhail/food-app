@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import CartDetail from "../components/CartDetail";
-import DetailFood from "../components/DetailFood";
+import CartDetail from "./CartDetail";
+import DetailFood from "./DetailFood";
 import { CartContext } from "../context/Product";
 
-import { Data } from "./DataDummy";
+import { getProducts } from '../utils/local-data';
 
 export default function Table() {
+	const [products] = useState(() => getProducts());
 	const { cart, setCart } = useContext(CartContext);
 	const [detail, setDetail] = useState({
 		name: "",
@@ -25,12 +26,11 @@ export default function Table() {
 		setCart(updatedCart);
 	};
 
-	console.log(cart);
 
 	return (
 		<>
 			{cart.map((i) =>
-				Data.map((item) =>
+				products.map((item) =>
 					i.id === item.id ? (
 						<>
 							<CartDetail

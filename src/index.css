@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+	overflow-x: hidden;
 }
 
 .numHide::-webkit-outer-spin-button,
