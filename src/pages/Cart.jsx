@@ -5,9 +5,9 @@ import { NumericFormat } from "react-number-format";
 import { Link } from "react-router-dom";
 
 import Appbar from "../components/Appbar";
-import Table from "../parts/Table";
+import Table from "../components/Table";
 
-export default function () {
+export default function Cart () {
 	const { cart, setCart, deleteSelectedProducts } = useContext(CartContext);
 
 	useEffect(() => {
@@ -28,8 +28,6 @@ export default function () {
 		}
 		return acc;
 	}, 0);
-
-	console.log(cart);
 
 	return (
 		<>
