@@ -25,12 +25,12 @@ export default function Appbar() {
 								<Link to="/product">Product</Link>
 							</li>
 							<li tabIndex={0}>
-								<a className="justify-between">
+								<span className="justify-between">
 									About
 									<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 										<path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
 									</svg>
-								</a>
+								</span>
 								<ul className="p-2 bg-white shadow-md">
 									<li>
 										<Link to="/profile">Profile</Link>
@@ -43,7 +43,7 @@ export default function Appbar() {
 						</ul>
 					</div>
 					<Link to="/" className="ml-8">
-						<img src={Logo} className="w-10" />
+						<img src={Logo} className="w-10" alt='' />
 					</Link>
 				</div>
 				<div className="navbar-center hidden lg:flex">
@@ -55,12 +55,12 @@ export default function Appbar() {
 							<Link to="/product">Product</Link>
 						</li>
 						<li tabIndex={0}>
-							<a>
+							<span>
 								About
 								<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
 									<path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
 								</svg>
-							</a>
+							</span>
 							<ul className="p-2 bg-white shadow-md">
 								<li>
 									<Link to="/profile">Profile</Link>
@@ -93,12 +93,12 @@ export default function Appbar() {
 					<div className="dropdown dropdown-end">
 						<label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-8 ml-2">
 							<div className="w-10 rounded-full">
-								<img src={Foto} />
+								<img src={Foto} alt='' />
 							</div>
 						</label>
 						<ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 							<li>
-								<a>Logout</a>
+								<span>Logout</span>
 							</li>
 						</ul>
 					</div>
