@@ -1,4 +1,4 @@
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 import BrowseFood from "../components/BrowseFood";
 import { useState } from "react";
 
@@ -30,9 +30,7 @@ export default function Order() {
 	return (
 		<>
 			<div className="flex flex-col h-screen justify-between">
-				<div className="sticky top-0 z-50">
-					<Appbar />
-				</div>
+				<Appbar />
 				<div className="mb-auto mx-8 my-8">
 					<div>
 						<div className="font-semibold text-[22px] text-black mb-4">Featured Food</div>

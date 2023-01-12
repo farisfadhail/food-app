@@ -4,7 +4,7 @@ import { NumericFormat } from "react-number-format";
 
 import { Link } from "react-router-dom";
 
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 import Table from "../parts/Table";
 
 export default function () {

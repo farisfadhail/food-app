@@ -8,7 +8,7 @@ export default function Appbar() {
 	const { cart } = useContext(CartContext);
 
 	return (
-		<>
+		<div className="sticky top-0 z-50">
 			<div className="navbar bg-base-100 py-4 rounded-b-lg shadow-md">
 				<div className="navbar-start">
 					<div className="dropdown">
@@ -104,6 +104,6 @@ export default function Appbar() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
