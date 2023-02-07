@@ -1,8 +1,8 @@
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 import BrowseFood from "../components/BrowseFood";
 import { useState } from "react";
 
-import { Data } from "../parts/DataDummy";
+import { Data } from "../components/DataDummy";
 import Modal from "../components/Modal";
 import FeaturedFood from "../components/FeaturedFood";
 import Flickity from "react-flickity-component";
@@ -29,7 +29,7 @@ export default function Order() {
 
 	return (
 		<>
-			<div className="flex flex-col h-screen justify-between overflow-x-hidden">
+			<div className="flex flex-col h-screen justify-between overflow-x-hidden scrollbar-hide">
 				<div className="sticky top-0 z-50">
 					<Appbar />
 				</div>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import CartDetail from "../components/CartDetail";
-import DetailFood from "../components/DetailFood";
+import CartDetail from "./CartDetail";
+import DetailFood from "./DetailFood";
 import { CartContext } from "../context/Product";
 
 import { Data } from "./DataDummy";

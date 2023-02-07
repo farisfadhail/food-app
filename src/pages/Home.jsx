@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 
 export default function Home() {
 	return (

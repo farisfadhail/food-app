@@ -4,8 +4,8 @@ import { NumericFormat } from "react-number-format";
 
 import { Link } from "react-router-dom";
 
-import Appbar from "../parts/Appbar";
-import Table from "../parts/Table";
+import Appbar from "../components/Appbar";
+import Table from "../components/Table";
 
 export default function () {
 	const { cart, setCart, deleteSelectedProducts } = useContext(CartContext);
@@ -33,7 +33,7 @@ export default function () {
 
 	return (
 		<>
-			<div className="flex flex-col h-screen justify-between bg-base-200">
+			<div className="flex flex-col h-screen justify-between bg-base-200 scrollbar-hide">
 				<div className="sticky top-0 z-50">
 					<Appbar />
 				</div>

@@ -1,5 +1,5 @@
 import logoMixue from "../assets/Mixue.jpg";
-import Appbar from "../parts/Appbar";
+import Appbar from "../components/Appbar";
 
 export default function ContactUs() {
 	return (
@@ -9,7 +9,7 @@ export default function ContactUs() {
 					<Appbar />
 				</div>
 				<div>
-					<img src={logoMixue} className=" min-w-full object-cover object-center" />
+					<img src={logoMixue} className=" min-w-full object-cover object-center" alt="" />
 				</div>
 			</div>
 		</>

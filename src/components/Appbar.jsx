@@ -43,7 +43,7 @@ export default function Appbar() {
 						</ul>
 					</div>
 					<Link to="/" className="ml-8">
-						<img src={Logo} className="w-10" />
+						<img src={Logo} className="w-10" alt="" />
 					</Link>
 				</div>
 				<div className="navbar-center hidden lg:flex">
@@ -93,7 +93,7 @@ export default function Appbar() {
 					<div className="dropdown dropdown-end">
 						<label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-8 ml-2">
 							<div className="w-10 rounded-full">
-								<img src={Foto} />
+								<img src={Foto} alt="" />
 							</div>
 						</label>
 						<ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
