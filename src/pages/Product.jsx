@@ -29,7 +29,7 @@ export default function Order() {
 
 	return (
 		<>
-			<div className="flex flex-col h-screen justify-between">
+			<div className="flex flex-col h-screen justify-between overflow-x-hidden">
 				<div className="sticky top-0 z-50">
 					<Appbar />
 				</div>
