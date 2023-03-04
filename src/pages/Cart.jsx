@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/Product";
 import { NumericFormat } from "react-number-format";
